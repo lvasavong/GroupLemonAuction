@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem('userId') === null) window.location.replace('log_in_page.html');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LemonAuction Sell Product</title>
+    <link rel="stylesheet" type="text/css" href="css/sell_product_styles.css">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Playfair+Display:400,400i,700,900" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <div class="top-bar">
+
+        <div id="black-bar">
+            <a href="marketplace.html">
+                <img src="images/LemonAuction_Logo.svg" alt="The LemonAuction Logo">
+            </a>
+
+
+
+            <h1>Sell Product</h1>
+
+
+            <a href="#">
+                <img id="profile-image" :src="imageSrc" alt="The Profile Picture">
+            </a>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div id="form-container">
+            <div class="form-header-wrapper">
+                <a :href="marketplace_link">
+                    <div class="back-button"><i class="arrow-left"></i>{{ back_button }}</div>
+                </a>
+                <h1 class="form-header">{{ add_product_label }}</h1>
+            </div>
+            <form method="POST" v-on:submit.prevent="submitProduct">
+                <div class="add-product-form">
+
+                    <div class="text-input">
+                        <label for="productName">{{productName_label}}</label>
+                        <br>
+                        <input v-model="productName" type="text" id="product-name" name="productName">
+                        <br>
+
+                        <label for="productCategory">{{productCategory_label}}</label>
+                        <br>
+                        <select v-model="productCategory" id="product-category" name="productCategory">
+                            <option disabled value="">Please select one</option>
+                            <option v-for="category in categories" v-bind:value="category.name">
+                                {{ category.name }}
+                            </option>
+                        </select>
+
+                        <br>
+
+                        <label for="startingPrice">{{startingPrice_label}}</label>
+                        <br>
+                        <input v-model="productStartingPrice" type="number" min="1.00" step="0.50" id="starting-price" name="startingPrice">
+                        <br>
+
+                        <label for="auctionLength">{{auctionLength_label}}</label>
+                        <br>
+                        <input v-model="productDuration" type="number" step='1' min="1" id="auction-length" name="auctionLength" placeholder="Time in minutes">
+                        <br>
+
+                        <label for="productDescription">{{productDescription_label}}</label>
+                        <br>
+                        <textarea v-model="productDescription" id="product-description" name="productDescription"></textarea>
+                    </div>
+
+                    <div class="upload-product-picture">
+                        <label for="productImage">{{productImage_label}}</label>
+
+                        <div class="product-image-box">
+                            <img v-if="selectedURL" :src="selectedURL">
+                        </div>
+                        <div class="align-center">
+                            <input type="file" id="product-image" name="productImage" @change="onFileSelected">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="align-center">
+                    <input type="submit" id="submit-button" :value="confirmProduct_button">
+                </div>
+
+            </form>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script src="js/sell_product_scripts.js"></script>
+</body>
+
+</html>

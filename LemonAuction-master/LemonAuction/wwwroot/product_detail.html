@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem('userId') === null) {
+            window.location.replace('log_in_page.html');
+        } else if (!(new URLSearchParams(window.location.search).has('productId'))) {
+            alert("No productId given")
+            window.location.replace('marketplace.html');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LemonAuction Product</title>
+    <link rel="stylesheet" type="text/css" href="css/marketplace_styles.css">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Playfair+Display:400,400i,700,900" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/signalr.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="top-bar">
+
+        <div id="black-bar">
+            <a href="#">
+                <img src="images/LemonAuction_Logo.svg" alt="The LemonAuction Logo">
+            </a>
+
+            <h1>Live Auction</h1>
+
+            <a href="#">
+                <img id="profile-image" :src="imageSrc" alt="The Profile Picture">
+            </a>
+        </div>
+
+
+
+    </div>
+
+    <div class="container">
+
+        <div id="product-detail-grid">
+
+            <a :href="marketplace_link">
+                <div class="back-button"><i class="arrow-left"></i>{{ back_button }}</div>
+            </a>
+            <h1 class="auction-header">{{ bids_history_label }}</h1>
+            <product-detail v-bind:product-detail="product">
+            </product-detail>
+            <div id="product-bids">
+                <div ref="bidScroller" class="bids-display">
+                    <bid-component v-for="(bid, index) in bids" v-bind:color="colorMap[bid.bidder.username]" v-bind:key="bid.id" v-bind:bid="bid" v-bind:index="index"></bid-component>
+                </div>
+
+                <form id="bid-interaction" method="POST" action="#" v-on:submit.prevent="placeBid">
+
+                    <div class="info-wrapper">
+                        <p class="price">$ {{ currentPrice }} </p>
+                        <p class="bids-counter"> {{ bidCount }} bids</p>
+                    </div>
+
+                    <div id="bid-field">
+                        <input step="0.50" type="number" v-model.number="bidAmount" v-bind:placeholder="currentPrice + 0.50" v-bind:min="currentPrice + 0.50">
+                    </div>
+
+                    <p class="time-counter">{{ bidTimeRemaining }} left</p>
+
+                    <div id="place-bid-button">
+                        <input type="submit" :value="place_bid_button">
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <a :href="sell_product_link">{{ sell_product_text }}</a>
+    </footer>
+
+    <script src="js/vue.js"></script>
+    <script src="js/product_detail_scripts.js"></script>
+</body>
+
+</html>

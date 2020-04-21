@@ -1,0 +1,39 @@
+{
+    "name": "LemonAuction",
+    "private": true,
+    "version": "0.0.0",
+    "devDependencies": {
+        "@types/webpack-env": "^1.13.6",
+        "aspnet-webpack": "^3.0.0",
+        "ts-loader": "^5.3.0",
+        "bootstrap": "^3.3.6",
+        "css-loader": "^1.0.1",
+        "event-source-polyfill": "^1.0.3",
+        "file-loader": "^2.0.0",
+        "isomorphic-fetch": "^2.2.1",
+        "jquery": "^3.1.1",
+        "extract-text-webpack-plugin": "^4.0.0-beta.0",
+        "mini-css-extract-plugin": "^0.4.4",
+        "style-loader": "^0.23.1",
+        "tslint": "^5.11.0",
+        "typescript": "^3.1.6",
+        "url-loader": "^1.1.2",
+        "vue-loader": "^15.4.2",
+        "vue-property-decorator": "^7.2.0",
+        "vue-router": "^3.0.1",
+        "vue-template-compiler": "^2.5.17",
+        "webpack": "^4.23.1",
+        "webpack-cli": "^3.1.2",
+        "webpack-hot-middleware": "^2.12.2",
+        "uglifyjs-webpack-plugin": "^2.0.1"
+    },
+    "dependencies": {
+        "@aspnet/signalr": "^1.0.4",
+        "ajv": "^6.5.4",
+        "axios": "^0.18.0",
+        "popper.js": "^1.14.4",
+        "vue": "^2.5.17",
+        "vue-class-component": "^6.3.2",
+        "webpack-dev-middleware": "^3.4.0"
+    }
+}

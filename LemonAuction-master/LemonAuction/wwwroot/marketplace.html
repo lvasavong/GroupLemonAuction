@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script>
+        if (localStorage.getItem('userId') === null) window.location.replace('log_in_page.html');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LemonAuction Marketplace</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="css/marketplace_styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Playfair+Display:400,400i,700,900" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+</head>
+
+<body>
+
+    <div id="marketplace">
+
+        <div class="top-bar">
+
+            <div id="black-bar">
+                <a href="#">
+                    <img src="images/LemonAuction_Logo.svg" alt="The LemonAuction Logo">
+                </a>
+
+                <div method="POST" action="#" id="search-bar">
+                    <input v-model="searchQuery" type="text" placeholder="Search... ">
+                </div>
+
+                <a href="#">
+                    <img id="profile-image" :src="imageSrc" alt="The Profile Picture">
+                </a>
+            </div>
+            <div id="category-bar">
+                <category-button v-bind:class="{ selected: category.title == selectedCategory }" v-for="category in categories" v-bind:key="category.id" v-bind:category="category" @pressed="selectedCategory = (selectedCategory == $event) ? null : category.title"></category-button>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div id="product-grid">
+
+                <product v-for="product in resultProducts" v-bind:key="product.productId" v-bind:product-info="product"></product>
+
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <a :href="sell_product_link">{{ sell_product_text }}</a>
+    </footer>
+
+    <script src="js/vue.js"></script>
+    <script src="js/marketplace_scripts.js"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create New Account</title>
+    <link rel="stylesheet" type="text/css" href="css/log_in_page_styles.css">
+    <link rel="stylesheet" type="text/css" href="css/upload_picture.css">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Playfair+Display:400,400i,700,900" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="mobile-only">
+            <div class="black-background">
+                <div class="mobile-logo-container">
+                    <a class="logo_button" href="log_in_page.html"><img src="images/LemonAuction_Logo.svg" alt="The LemonAuction Logo"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <section id="create-account-form">
+                <div class="form-container">
+                    <h1>{{ title }}</h1>
+
+
+
+                    <form method="POST" action="#" v-on:submit.prevent="submitRegistration">
+                        <div class="upload-user-picture">
+                            <label for="userImage">{{userDescription_label}}</label>
+
+                            <div class="user-image-box">
+                                <img v-if="selectedURL" :src="selectedURL">
+                            </div>
+                            <div class="align-center">
+                                <input type="file" id="user-image" name="userImage" @change="onFileSelected">
+                            </div>
+                        </div>
+                        <input type="text" v-model="username" v-bind:placeholder="username_placeholder">
+                        <br>
+                        <input type="email" v-model="email" v-bind:placeholder="email_placeholder">
+                        <br>
+                        <input type="password" v-model="password" v-bind:placeholder="password_placeholder">
+                        <br>
+                        <input id="submit-button" type="submit" v-bind:value="submit_button">
+                    </form>
+                </div>
+
+
+
+            </section>
+
+            <div id="large-logo" class="black-background">
+                <div class="logo-container">
+                    <a class="logo_button" :href="log_in_page_link"><img src="images/LemonAuction_Logo.svg" alt="The LemonAuction Logo"></a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script src="js/create_account_script.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="js/upload_picture.js"></script>
+</body>
+
+</html>

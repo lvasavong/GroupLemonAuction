@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem('userId') !== null) window.location.replace('marketplace.html');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log In Page</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" type="text/css" href="css/log_in_page_styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Playfair+Display:400,400i,700,900" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="mobile-only">
+            <div class="black-background">
+                <div class="mobile-logo-container">
+                    <img src="images/LemonAuction_Logo.svg" alt="The LemonAuction Logo">
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <section id="log-in-form">
+                <div class="form-container">
+                    <h1>{{ title }}</h1>
+                    <form method="POST" action="#" v-on:submit.prevent="submitLogin">
+                        <input v-model="username" type="text" v-bind:placeholder="username_placeholder">
+                        <br>
+                        <input v-model="password" type="password" v-bind:placeholder="password_placeholder">
+                        <br>
+                        <input id="submit-button" type="submit" v-bind:value="submit_button">
+                    </form>
+                    <a :href="create_account_link">
+                        <p>{{ create_account_label }}</p>
+                    </a>
+                </div>
+
+
+
+            </section>
+
+            <div id="large-logo" class="black-background">
+                <div class="logo-container">
+                    <img src="images/LemonAuction_Logo.svg" alt="The LemonAuction Logo">
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script src="js/log_in_page_script.js"></script>
+</body>
+
+</html>
